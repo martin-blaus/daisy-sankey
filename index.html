@@ -1,47 +1,41 @@
+<!DOCTYPE html>
 <html>
 
-<body>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <div id="sankey_multiple" style=" height: 600px;"></div>
-
-    <script type="text/javascript">
-        google.charts.load("current", { packages: ["sankey"] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'From');
-            data.addColumn('string', 'To');
-            data.addColumn('number', 'Weight');
-            data.addRows([
-                ['Expenses', 'Taxes', 175],
-                ['Taxes', 'Property Taxes', 175],
-                ['Taxes', 'Corporate Taxes', 0],
-                ['Expenses', 'Administrative Expenses', 25092.87],
-                ['Expenses', 'Payroll Expenses', 149990.59],
-                ['Expenses', 'Non-Recurring-  Repairs', 26187.26],
-                ['Expenses', 'Building Operating Expenses', 26485.42],
-                ['Expenses', 'Projects & Capital Expenditures', 3900],
-                ['Expenses', 'Insurance', 15434.63],
-                ['Expenses', 'Utilities', 45644.88],
-                ['Utilities', 'Electricity', 22994.9],
-                ['Utilities', 'Cable/ Satellite/Internet/Telephone', 1132.86],
-                ['Utilities', 'Water / Sewer', 6659.92],
-                ['Utilities', 'Gas', 14857.2],
-                ['Expenses', 'Compliance & Monitoring', 865],
-
-                ['Compliance & Monitoring', 'Fire Inspections', 0]]);
-
-            var options = {
-                width: 750,
-                height: 400,
-            };
-
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.Sankey(document.getElementById('sankey_multiple'));
-            chart.draw(data, options);
+<head>
+    <script data-require="jquery@*" data-semver="3.0.0"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .node rect {
+            cursor: move;
+            fill-opacity: 0.9;
+            shape-rendering: crispEdges;
         }
-    </script>
+
+        .node text {
+            pointer-events: none;
+            text-shadow: 0 1px 0 #fff;
+        }
+
+        .link {
+            fill: none;
+            stroke: #000;
+            stroke-opacity: .2;
+        }
+
+        .link:hover {
+            stroke-opacity: .5;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Wooster expenses report</h3>
+    <p id="chart"></p>
+    <script src="https://d3js.org/d3.v3.js"></script>
+    <script src="sankey.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

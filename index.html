@@ -1,0 +1,47 @@
+<html>
+
+<body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <div id="sankey_multiple" style=" height: 600px;"></div>
+
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["sankey"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'From');
+            data.addColumn('string', 'To');
+            data.addColumn('number', 'Weight');
+            data.addRows([
+                ['Expenses', 'Taxes', 175],
+                ['Taxes', 'Property Taxes', 175],
+                ['Taxes', 'Corporate Taxes', 0],
+                ['Expenses', 'Administrative Expenses', 25092.87],
+                ['Expenses', 'Payroll Expenses', 149990.59],
+                ['Expenses', 'Non-Recurring-  Repairs', 26187.26],
+                ['Expenses', 'Building Operating Expenses', 26485.42],
+                ['Expenses', 'Projects & Capital Expenditures', 3900],
+                ['Expenses', 'Insurance', 15434.63],
+                ['Expenses', 'Utilities', 45644.88],
+                ['Utilities', 'Electricity', 22994.9],
+                ['Utilities', 'Cable/ Satellite/Internet/Telephone', 1132.86],
+                ['Utilities', 'Water / Sewer', 6659.92],
+                ['Utilities', 'Gas', 14857.2],
+                ['Expenses', 'Compliance & Monitoring', 865],
+
+                ['Compliance & Monitoring', 'Fire Inspections', 0]]);
+
+            var options = {
+                width: 750,
+                height: 400,
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.Sankey(document.getElementById('sankey_multiple'));
+            chart.draw(data, options);
+        }
+    </script>
+</body>
+
+</html>
